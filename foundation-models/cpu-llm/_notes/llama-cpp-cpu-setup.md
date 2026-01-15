@@ -55,126 +55,132 @@ Qwen / LLaMA / Mistral / Gemma 등으로 확장 가능하며,
 
 ---
 
+## 빌드 전략 (중요)
 
+- 시스템 gcc 사용 불가
+- 전역 환경 변경 금지 (공용 서버)
+- conda 환경 내부에서만 컴파일
 
-빌드 전략 (중요)
+---
 
-시스템 gcc 사용 불가
+## conda 기반 빌드 메모
 
-전역 환경 변경 금지
+### llama 전용 conda 환경
 
-conda 환경 내부에서만 컴파일
-
-conda 기반 빌드 메모
-llama 전용 환경
-conda create -n llama-cpp python=3.10 -y
+conda create -n llama-cpp python=3.10 -y  
 conda activate llama-cpp
 
-conda 환경 내 컴파일러 설치
+### conda 환경 내 컴파일러 설치
+
 conda install -c conda-forge gcc_linux-64 gxx_linux-64 cmake make -y
 
+### gcc 확인
 
-gcc 확인:
+gcc --version  
+(x86_64-conda-linux-gnu-gcc 확인)
 
-gcc --version
-# x86_64-conda-linux-gnu-gcc
+---
 
-llama.cpp 빌드
-cd /data3/jjang/2026/llm
-git clone https://github.com/ggerganov/llama.cpp
+## llama.cpp 빌드
 
-cd llama.cpp
-rm -rf build
-mkdir build
-cd build
+/data3/jjang/2026/llm 경로에서 진행
 
-cmake .. \
- -DCMAKE_C_COMPILER=x86_64-conda-linux-gnu-gcc \
- -DCMAKE_CXX_COMPILER=x86_64-conda-linux-gnu-g++
+git clone https://github.com/ggerganov/llama.cpp  
+
+llama.cpp 디렉토리 진입 후:
+
+rm -rf build  
+mkdir build  
+cd build  
+
+cmake 실행 시 conda gcc 지정  
+C 컴파일러: x86_64-conda-linux-gnu-gcc  
+C++ 컴파일러: x86_64-conda-linux-gnu-g++
 
 make -j72
 
+---
 
-빌드 결과 확인:
+## 빌드 결과 확인
 
-ls bin
-# llama-cli
-# llama-server
+build/bin 디렉토리에 아래 실행 파일 생성되어야 함
 
-실행 파일 위치
-/data3/jjang/2026/llm/llama.cpp/build/bin/llama-cli
-/data3/jjang/2026/llm/llama.cpp/build/bin/llama-server
+- llama-cli  
+- llama-server  
 
+---
 
-동작 확인:
+## 실행 파일 위치
 
-llama-cli --help
+/data3/jjang/2026/llm/llama.cpp/build/bin/llama-cli  
+/data3/jjang/2026/llm/llama.cpp/build/bin/llama-server  
 
+---
 
-※ 정상 출력되지 않으면 이후 단계 진행 불가
+## 동작 확인
 
-PATH 설정 (선택)
+llama-cli --help 명령이 정상 출력되어야 함  
+정상 출력되지 않으면 이후 단계 진행 불가
 
-공용 서버이므로 전역 PATH 설정은 지양
+---
+
+## PATH 설정 (선택)
+
+공용 서버이므로 전역 PATH 설정은 지양  
 conda 환경에서만 사용 권장
 
-export PATH=/data3/jjang/2026/llm/llama.cpp/build/bin:$PATH
+PATH에 아래 경로 추가  
+/data3/jjang/2026/llm/llama.cpp/build/bin
 
-모델 다운로드 메모
+---
 
-모델 저장 위치:
+## 모델 다운로드 메모
 
+모델 저장 위치  
 /data3/jjang/2026/llm/models
 
+HuggingFace에서 GGUF 모델 다운로드  
+토큰은 세션에서만 사용하고 문서나 레포에 저장하지 않음
 
-HuggingFace에서 GGUF 모델 다운로드
+환경 변수 HF_TOKEN 설정 후 wget으로 모델 파일 다운로드
 
-토큰은 세션에서만 사용, 문서에 저장하지 않음
+---
 
-export HF_TOKEN=********
-wget --header="Authorization: Bearer $HF_TOKEN" \
- -O qwen2.5-coder-7b-instruct-q4_k_m.gguf \
- https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct-GGUF/resolve/main/qwen2.5-coder-7b-instruct-q4_k_m.gguf
+## 실행 예시
 
-실행 예시
-CLI
-llama-cli \
- -m /data3/jjang/2026/llm/models/qwen2.5-coder-7b-instruct-q4_k_m.gguf \
- -t 24 --ctx-size 4096 --temp 0.6 \
- -p "너는 한국어로만 답변하는 AI 어시스턴트다."
+CLI 방식으로 llama-cli 실행  
+모델 경로 지정  
+스레드 수, 컨텍스트 크기, temperature 지정  
+한국어 응답 프롬프트 사용
 
-서버 실행
-llama-server \
- -m /data3/jjang/2026/llm/models/qwen2.5-coder-7b-instruct-q4_k_m.gguf \
- --host 0.0.0.0 --port 11972 \
- --ctx-size 4096 --threads 24
+서버 실행 시  
+llama-server를 HTTP 모드로 실행  
+host 0.0.0.0  
+port 11972  
+threads 24  
+ctx-size 4096
 
-운영 메모
+---
 
-LLM은 필요할 때만 실행
+## 운영 메모
 
-실행 중에만 CPU/메모리 점유
+- LLM은 필요할 때만 실행
+- 실행 중에만 CPU 및 메모리 점유
+- 종료 시 자원 즉시 반환
 
-종료 시 자원 즉시 반환
-
-프로세스 확인:
-
+프로세스 확인 시  
 ps -ef | grep llama
 
+종료 시  
+PID 기준으로 kill  
+필요 시 강제 종료
 
-종료:
+---
 
-kill <PID>
-kill -9 <PID>   # 강제 종료
+## 현재 상태 요약
 
-현재 상태 요약
-
-전역 환경 영향 없음
-
-conda 환경 내부에서만 gcc / CMake / llama.cpp 사용
-
-빌드 및 실행 경로 명확
-
-실행/종료 기준 명확
-
-공용 서버에서 안전하게 실험 가능
+- 전역 환경 영향 없음
+- conda 환경 내부에서만 gcc / CMake / llama.cpp 사용
+- 빌드 및 실행 경로 명확
+- 실행 / 종료 기준 명확
+- 공용 서버에서 안전하게 실험 가능
