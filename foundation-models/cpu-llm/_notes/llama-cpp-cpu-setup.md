@@ -83,7 +83,7 @@ gcc --version
 
 ## llama.cpp 빌드
 
-/data3/jjang/2026/llm 경로에서 진행
+/jjang/2026/llm 경로에서 진행
 
 git clone https://github.com/ggerganov/llama.cpp  
 
@@ -112,8 +112,8 @@ build/bin 디렉토리에 아래 실행 파일 생성되어야 함
 
 ## 실행 파일 위치
 
-/data3/jjang/2026/llm/llama.cpp/build/bin/llama-cli  
-/data3/jjang/2026/llm/llama.cpp/build/bin/llama-server  
+/jjang/2026/llm/llama.cpp/build/bin/llama-cli  
+/jjang/2026/llm/llama.cpp/build/bin/llama-server  
 
 ---
 
@@ -130,7 +130,7 @@ llama-cli --help 명령이 정상 출력되어야 함
 conda 환경에서만 사용 권장
 
 PATH에 아래 경로 추가  
-/data3/jjang/2026/llm/llama.cpp/build/bin
+/jjang/2026/llm/llama.cpp/build/bin
 
 ---
 
