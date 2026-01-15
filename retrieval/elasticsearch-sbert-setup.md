@@ -119,4 +119,4 @@ Elasticsearch + SBERT 조합은
 이 구조를 실제 시스템에서 유지하기 위한 핵심이라는 점을 확인한 실험이었음.
 
 
-👉 [Sentence-BERT + Elasticsearch 설치 실험 노트](./_notes/sbert-elasticsearch-setup.md)
+👉 [Sentence-BERT + Elasticsearch 설치 실험 노트](./_notes/elasticsearch-sbert-setup.md)
