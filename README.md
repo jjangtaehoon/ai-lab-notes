@@ -20,12 +20,14 @@ AI를 하나의 지능이 아니라,
 
 ## 다루는 영역 (Scope)
 
-이 저장소의 실험은 **AI 시스템 전반을 보안·운영 관점에서 다루는 것**에 초점을 둡니다.
+이 저장소의 실험은 **AI를 실제로 운영 가능한 시스템으로 만들기 위한 구조와 보안**에 초점을 둡니다.
 
 ### Foundation Models  
 AI 시스템의 기반 모델 계층  
 - LLMs / Multimodal Models  
 - Inference Isolation  
+
+---
 
 ### Retrieval  
 지식과 AI를 연결하는 구조  
@@ -33,33 +35,55 @@ AI 시스템의 기반 모델 계층
 - Vector Search  
 - Subset / Context Extraction  
 
+---
+
 ### Reasoning  
 AI의 사고와 추론 메커니즘  
 - Chain-of-Thought  
 - Tool-based Reasoning  
 
+---
+
 ### Agentic AI  
 자율적으로 행동하는 AI 구조  
 - Agents & Actions  
 - Secure Execution Pod  
+- Smart Contract–driven Action Control  
+
+---
 
 ### Infrastructure  
 AI 시스템 운영 인프라  
 - Kubernetes  
 - Ephemeral / One-shot Pod  
 - GPU Scheduling  
+- Blockchain-integrated Execution Environment  
+
+---
 
 ### Security  
 AI 사용을 위한 보안 체계  
 - Encryption  
 - Network / Context Isolation  
 - Zero Trust Architecture  
+- DID-based Identity & Access Control  
 
-### Evaluation & Governance  
-AI 성능과 신뢰성, 책임 구조  
+---
+
+### Evaluation  
+AI 성능과 실행 신뢰성 평가  
 - Evals & Reproducibility  
 - Execution Proof  
-- Auditability & Accountability  
+- On-chain / Off-chain Verification  
+
+---
+
+### Governance  
+AI 운영과 책임 구조  
+- Usage Policy Enforcement  
+- Auditability  
+- Accountability via DID / VC / VP  
+
 
 ---
 
