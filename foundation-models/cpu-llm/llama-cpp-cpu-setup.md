@@ -67,4 +67,4 @@ llama.cpp
 - 실행 시점 제어
 - 시스템 통합 시 호출 방식 결정
 
-👉 [llama.cpp CPU 환경 구축 노트](./_note/llama-cpp-cpu-setup.md)
+👉 [llama.cpp CPU 환경 구축 노트](./_notes/llama-cpp-cpu-setup.md)
