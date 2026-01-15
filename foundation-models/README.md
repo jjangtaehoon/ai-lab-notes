@@ -1,1 +1,1 @@
-# Foundation Models
+# AI 시스템의 핵심 모델
