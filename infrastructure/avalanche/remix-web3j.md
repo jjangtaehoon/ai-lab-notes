@@ -23,9 +23,9 @@ MetaMask를 AvChain 서브넷에 연결하고, Remix IDE를 통해 관리자(Adm
 * **과정**: Solidity 컴파일(.abi, .bin 생성) → Web3j CLI를 통한 자바 코드 생성
 
 ### 클래스 생성 명령어
-web3j generate solidity -a CbrainDAO.abi -b CbrainDAO.bin -o ./src/main/java -p org.snubi.crypto.brain.blockchain
-web3j generate solidity -a CbrainStudy.abi -b CbrainStudy.bin -o ./src/main/java -p org.snubi.crypto.brain.blockchain
-web3j generate solidity -a DidRegistrar.abi -b DidRegistrar.bin -o ./src/main/java -p org.snubi.did.resolver.blockchain
+web3j generate solidity -a CbrainDAO.abi -b CbrainDAO.bin -o ./src/main/java -p org.snubi.crypto.brain.blockchain  
+web3j generate solidity -a CbrainStudy.abi -b CbrainStudy.bin -o ./src/main/java -p org.snubi.crypto.brain.blockchain  
+web3j generate solidity -a DidRegistrar.abi -b DidRegistrar.bin -o ./src/main/java -p org.snubi.did.resolver.blockchain  
 web3j generate solidity -a SignatureLog.abi -b SignatureLog.bin -o ./src/main/java -p org.snubi.did.resolver.blockchain
 
 ---
