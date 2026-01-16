@@ -61,3 +61,6 @@ Ubuntu 서버 재설정 → Avalanche 네트워크 재구동 → RPC 연결 확�
     - Environment: Injected Provider - MetaMask 선택
     - 네트워크 확인: avchain (ChainID: 1234546267) 연동 확인
 * 배포 테스트: MetaMask 서명 후 컨트랙트 배포 완료 및 eth_getCode 통신 확인
+
+
+
