@@ -1,8 +1,2 @@
 # 자율적으로 행동하는 AI
 
-
-## StudyContractV5  
-0xf1db872E6454D553686b088c1Ea3889cF2FE3ABe  
-  
-## DAOContractV5  
-0x224A8113006f2c986217A832e364D676C19C7c21  
