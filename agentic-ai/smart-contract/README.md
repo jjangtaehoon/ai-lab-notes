@@ -21,5 +21,5 @@ avalanche.smart.contract.study.address=0xf1db872E6454D553686b088c1Ea3889cF2FE3AB
 avalanche.chainid=1234567003
 
 ## master account
-account : 0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC
+account : 0x8db97C7cEcE249c2b98bDC0226Cc4C2A57BF52FC  
 private.key : 56289e99c94b6912bfc12adc093c9b51124f0dc54ac7a766b2bc5ccf558d8027
